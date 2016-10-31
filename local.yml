@@ -21,7 +21,7 @@
     - "group_vars/deploy-clojure"
   tasks:
     - name: Download Clojure WAR file
-      command: wget http://d2io1hx8u877l0.cloudfront.net/2-collectors/clojure-collector/clojure-collector-1.1.0-standalone.war -O {{ warRemotePath }}/{{ warName }}
+      get_url: url=http://d2io1hx8u877l0.cloudfront.net/2-collectors/clojure-collector/clojure-collector-1.1.0-standalone.war dest={{ warRemotePath }}/{{ warName }}
 
     - name: Unzip WAR file
       unarchive: src={{ warRemotePath }}/{{ warName }} dest=/opt/apache-tomcat-7.0.61/webapps copy=no mode=0755 owner=tomcat group=tomcat
