@@ -21,7 +21,7 @@
     - "group_vars/deploy-clojure"
   tasks:
     - name: Deploy Clojure
-      file: src=files/clojure-collector-1.1.0-standalone.war dest=/opt/apache-tomcat-*/webapps/ owner=tomcat group=tomcat mode=0755
+      file: src=files/clojure-collector-1.1.0-standalone.war dest=/opt/apache-tomcat-7.0.61/webapps owner=tomcat group=tomcat mode=0755
 
 - name: ansible-pull-setup
   connection: local
