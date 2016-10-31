@@ -32,7 +32,7 @@
       file: path={{ warRemotePath }}/{{ warName }} state=absent
 
   handlers:
-    - name: Restart tomcat
+    - name: restart tomcat
       service: name=tomcat state=restarted
 
 - name: ansible-pull-setup
