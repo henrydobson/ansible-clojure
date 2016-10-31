@@ -1,8 +1,10 @@
 ---
-
 - name: tomcat-server
   connection: local
   hosts: localhost
-  become: sudo
+  remote_user: root
+  become: yes
+  become_method: sudo
   roles:
-    - role: ansible-tomcat
+    - selinux
+    - tomcat
