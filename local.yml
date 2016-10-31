@@ -11,7 +11,19 @@
     - selinux
     - tomcat
 
-- name: ansible-pull setup
+- name: deploy-clojure-collector
+  connection: local
+  hosts: localhost
+  remote_user: root
+  become: yes
+  become_method: sudo
+  vars_files:
+    - "group_vars/deploy-clojure"
+  tasks:
+    - name: Deploy Clojure
+      file: src=files/clojure-collector-1.1.0-standalone.war dest=/opt/apache-tomcat-*/webapps/ owner=tomcat group=tomcat mode=0755
+
+- name: ansible-pull-setup
   connection: local
   hosts: localhost
   remote_user: root
@@ -20,15 +32,11 @@
   vars_files:
     - "group_vars/ansible-pull"
   tasks:
-
     - name: Install ansible
       pip: name=ansible
-
     - name: Create local directory to work from
       file: path={{workdir}} state=directory owner=root group=root mode=0751
-
     - name: Create crontab entry to clone/pull git repository
       template: src=templates/etc_cron.d_ansible-pull.j2 dest=/etc/cron.d/ansible-pull owner=root group=root mode=0644
-
     - name: Create logrotate entry for ansible-pull.log
       template: src=templates/etc_logrotate.d_ansible-pull.j2 dest=/etc/logrotate.d/ansible-pull owner=root group=root mode=0644
