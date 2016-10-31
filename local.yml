@@ -30,6 +30,7 @@
 
     - name: Delete remote war file
       file: path={{ warRemotePath }}/{{ warName }} state=absent
+
   handlers:
     - name: restart tomcat
       service: name=tomcat state=restarted
