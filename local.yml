@@ -1,0 +1,8 @@
+---
+
+- name: tomcat-server
+  connection: local
+  hosts: localhost
+  become: sudo
+  roles:
+    - role: ansible-tomcat
